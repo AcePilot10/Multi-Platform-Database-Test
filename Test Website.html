@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+    
+    <head>
+        <title>Test Database</title>
+        <link rel="stylesheet" type="text/css" href="site_style.css">
+    </head>
+    
+    <body>
+        <div id="database_text">
+        Test Database Website
+        </div>
+    </body>
+    
+    
+    <script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
+    <script>
+      var config = {
+        apiKey: "AIzaSyBlZU1gVxLiYZkTJJ4pjx5S2MeYUAdGIKM",
+        authDomain: "test-77179.firebaseapp.com",
+        databaseURL: "https://test-77179.firebaseio.com",
+        projectId: "test-77179",
+        storageBucket: "test-77179.appspot.com",
+        messagingSenderId: "826250647026"
+      };
+      firebase.initializeApp(config);
+    </script>
+    <script>
+        var database = firebase.database().ref("Test");
+        //var title_text = database;
+        //document.getElementById("database_text").innerHTML = title_text;
+        
+        database.on("value", function(snapshot) {
+            var text = snapshot.val();
+            document.getElementById("database_text").innerHTML = text;
+        });
+    </script>
+    <script>
+    firebase.database.enableLogging(function(message) {
+        console.log("[FIREBASE]", message);
+    });
+        
+        firebase.database().ref().on("child_changed", function(snapshot) {
+            var changedPost = snapshot.val();
+            var testText = firebase.database().ref().child("Test").val;
+            document.getElementById("database_text").innerHTML = changedPost;
+        console.log("The updated post is " + changedPost);
+        });
+    </script>
+    
+</html>

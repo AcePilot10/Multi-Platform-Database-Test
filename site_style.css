@@ -1,0 +1,10 @@
+body {
+    background-color: blue;
+}
+
+#database_text {
+    background-color: red;
+    font-size: 35px;
+    text-align: center;
+    color: green;
+}
